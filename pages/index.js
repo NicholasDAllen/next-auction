@@ -12,6 +12,6 @@ export default function Home() {
   if (error) return <div>failed to load</div>
   if (!data) return <div>loading...</div>
 
-  const items = data.map((i) => <AuctionItem id={i}/>);
-  return [].concat(<h2>Auction Items</h2>, items);
+  const items = data.map((i) => <AuctionItem key={i} id={i}/>);
+  return [].concat(<h2 key='header'>Auction Items</h2>, items);
 }
