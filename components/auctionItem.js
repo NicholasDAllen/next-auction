@@ -1,20 +1,23 @@
 import useSWR from 'swr'
+import React, { useState } from 'react';
 
 const BidForm = ({id}) => {
-    let bid = null;
+    const [bid, setBid] = useState('');
 
     const updateBid = (event) => {
-        bid = event.target.value;
+        setBid(event.target.value);
         // Post bid here
     };
 
     const placeBid = () => {
         console.log(bid);
+        // send bid to server ...
+        setBid('');
     }
 
     return (
         <div>
-            <input onChange={updateBid} type="number" />
+            <input value={bid} onChange={updateBid} type="number" />
             <button onClick={placeBid}>Place Bid</button>
         </div>
     );
