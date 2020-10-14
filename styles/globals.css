@@ -14,3 +14,10 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.auction_item {
+  background-color: #cccccc;
+  min-height: 80px;
+  width: 600px;
+  margin-top: 5px;
+}
