@@ -1,11 +1,22 @@
 import useSWR from 'swr'
 
-const BidForm = () => {
+const BidForm = ({id}) => {
+    let bid = null;
+
+    const updateBid = (event) => {
+        bid = event.target.value;
+        // Post bid here
+    };
+
+    const placeBid = () => {
+        console.log(bid);
+    }
+
     return (
-        <form>
-            <input />
-            <button>Place Bid</button>
-        </form>
+        <div>
+            <input onChange={updateBid} type="number" />
+            <button onClick={placeBid}>Place Bid</button>
+        </div>
     );
 };
 
@@ -25,7 +36,7 @@ export const AuctionItem = ({id}) => {
             <div className='item_name'>{data.name}</div>
             <div className='item_price'>{data.currentBid}</div>
             <div className='bid_form'>
-                <BidForm />
+                <BidForm id={id} />
             </div>
         </div>
     );
