@@ -16,8 +16,17 @@ a {
 }
 
 .auction_item {
-  background-color: #cccccc;
   min-height: 80px;
   width: 600px;
   margin-top: 5px;
+}
+
+.item_name {
+  width: 300px;
+}
+
+.item_price {
+  width: 100px;
+  text-align: center;
+  font-size:  larger;
 }

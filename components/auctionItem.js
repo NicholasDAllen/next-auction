@@ -1,5 +1,6 @@
 import useSWR from 'swr'
 import React, { useState } from 'react';
+import { Grid, Button, Input, Box, Card, Paper } from '@material-ui/core';
 
 const BidForm = ({id}) => {
     const [bid, setBid] = useState('');
@@ -16,10 +17,10 @@ const BidForm = ({id}) => {
     }
 
     return (
-        <div>
-            <input value={bid} onChange={updateBid} type="number" />
-            <button onClick={placeBid}>Place Bid</button>
-        </div>
+        <Box>
+            <Input value={bid} onChange={updateBid} type="number" /><br />
+            <Button className="Primary" onClick={placeBid}>Place Bid</Button>
+        </Box>
     );
 };
 
@@ -32,22 +33,22 @@ export const AuctionItem = ({id}) => {
     const { data, error } = useSWR(`api/item/${id}`, getItem);
 
     if (error) return <div className='auction_item'>failed to load</div>
-    if (!data) {
-        return (
-            <div className='auction_item'>
-                <div className='item_name'>Loading Item...</div>
-                <div className='item_price'>$XXX</div>
-            </div>
-        );
-    }
+
+    const price = data? data.currentBid : 'XXX';
+    const name = data? data.name : 'Loading ...';
 
     return (
-        <div className='auction_item'>
-            <div className='item_name'>{data.name}</div>
-            <div className='item_price'>{data.currentBid}</div>
-            <div className='bid_form'>
-                <BidForm id={id} />
-            </div>
-        </div>
+        <Card className='auction_item'>
+            <Grid
+                container
+                direction="row"
+                justify="center" alignItems="center">
+                    <Box className='item_name'>{name}</Box>
+                    <div className='item_price'>${price}</div>
+                    <Card className='bid_form'>
+                        <BidForm id={id} />
+                    </Card>
+            </Grid>
+        </Card>
     );
 };

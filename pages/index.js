@@ -11,18 +11,20 @@ export default function Home() {
   const { data, error } = useSWR('api/items', getItems);
 
   if (error) return <div>failed to load</div>
-  if (!data) return <div>loading...</div>
+  let items = <div>Loading...</div>;
+  if (data) { 
+    items = data.map((i) => <AuctionItem key={i} id={i}/>);
+  }
 
-  const items = data.map((i) => <AuctionItem key={i} id={i}/>);
-  return (
-    <h2 key='header'>Auction Items</h2>,
+  return [
     <Grid
       container
       direction="column"
       justify="center"
       alignItems="center"
     >
+      <h2 key='header'>Auction Items</h2>
       {items}
     </Grid>
-    );
+  ];
 }
