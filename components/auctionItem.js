@@ -32,7 +32,14 @@ export const AuctionItem = ({id}) => {
     const { data, error } = useSWR(`api/item/${id}`, getItem);
 
     if (error) return <div className='auction_item'>failed to load</div>
-    if (!data) return <div className='auction_item'>loading...</div>
+    if (!data) {
+        return (
+            <div className='auction_item'>
+                <div className='item_name'>Loading Item...</div>
+                <div className='item_price'>$XXX</div>
+            </div>
+        );
+    }
 
     return (
         <div className='auction_item'>

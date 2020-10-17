@@ -1,3 +1,5 @@
+import { sleep } from "../../../util/sleep";
+
 const items = {
     1: {
         "name": "Famous Painting", 
@@ -17,6 +19,7 @@ const items = {
 };
 
 export default async function handler(req, res) {
+    await sleep(3);
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
     const {id} = req.query;
