@@ -30,3 +30,8 @@ a {
   text-align: center;
   font-size:  larger;
 }
+
+.isLoading {
+  color: #666666; 
+  font-style: italic;
+}

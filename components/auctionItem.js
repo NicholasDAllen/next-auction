@@ -1,28 +1,7 @@
 import useSWR from 'swr'
-import React, { useState } from 'react';
-import { Grid, Button, Input, Box, Card, Paper } from '@material-ui/core';
-
-const BidForm = ({id}) => {
-    const [bid, setBid] = useState('');
-
-    const updateBid = (event) => {
-        setBid(event.target.value);
-        // Post bid here
-    };
-
-    const placeBid = () => {
-        console.log(bid);
-        // send bid to server ...
-        setBid('');
-    }
-
-    return (
-        <Box>
-            <Input value={bid} onChange={updateBid} type="number" /><br />
-            <Button className="Primary" onClick={placeBid}>Place Bid</Button>
-        </Box>
-    );
-};
+import React from 'react';
+import { Grid, Box, Card } from '@material-ui/core';
+import { BidForm } from './bidForm';
 
 const getItem = async (url) => {
     const result = await fetch(url);
@@ -36,6 +15,7 @@ export const AuctionItem = ({id}) => {
 
     const price = data? data.currentBid : 'XXX';
     const name = data? data.name : 'Loading ...';
+    const loadingStyle = data? '': 'isLoading';
 
     return (
         <Card className='auction_item'>
@@ -43,8 +23,8 @@ export const AuctionItem = ({id}) => {
                 container
                 direction="row"
                 justify="center" alignItems="center">
-                    <Box className='item_name'>{name}</Box>
-                    <div className='item_price'>${price}</div>
+                    <Box className={`item_name ${loadingStyle}`}>{name}</Box>
+                    <div className={`item_price ${loadingStyle}`}>${price}</div>
                     <Card className='bid_form'>
                         <BidForm id={id} />
                     </Card>
