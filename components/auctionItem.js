@@ -2,6 +2,7 @@ import useSWR from 'swr'
 import React from 'react';
 import { Grid, Box, Card } from '@material-ui/core';
 import { BidForm } from './bidForm';
+import Skeleton from 'react-loading-skeleton';
 
 const getItem = async (url) => {
     const result = await fetch(url);
@@ -14,7 +15,7 @@ export const AuctionItem = ({id}) => {
     if (error) return <div className='auction_item'>failed to load</div>
 
     const price = data? data.currentBid : 'XXX';
-    const name = data? data.name : 'Loading ...';
+    const name = data? data.name : <Skeleton />;
     const loadingStyle = data? '': 'isLoading';
 
     return (
