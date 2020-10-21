@@ -20,8 +20,14 @@ const items = {
 
 export default async function handler(req, res) {
     await sleep(3);
+    const {id} = req.query;
+    const item = items[id];
+    if (req.method === 'POST') {
+        if (req.body.bid > item.currentBid) {
+            item.currentBid = req.body.bid;
+        }
+    }
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
-    const {id} = req.query;
-    res.json(items[id]);
+    res.json(item);
   }

@@ -10,13 +10,19 @@ const getItem = async (url) => {
 }
 
 export const AuctionItem = ({id}) => {
-    const { data, error } = useSWR(`api/item/${id}`, getItem);
+    const swrKey = `api/item/${id}`;
+    const { data, error, isValidating, mutate } = useSWR(
+        swrKey,
+        getItem,
+        {
+            revalidateOnFocus: true,
+        });
 
     if (error) return <div className='auction_item'>failed to load</div>
 
     const price = data? data.currentBid : 'XXX';
     const name = data? data.name : <Skeleton />;
-    const loadingStyle = data? '': 'isLoading';
+    const loadingStyle = isValidating? 'isLoading': '';
 
     return (
         <Card className='auction_item'>
@@ -27,7 +33,7 @@ export const AuctionItem = ({id}) => {
                     <Box className={`item_name ${loadingStyle}`}>{name}</Box>
                     <div className={`item_price ${loadingStyle}`}>${price}</div>
                     <Card className='bid_form'>
-                        <BidForm id={id} />
+                        <BidForm id={id} mutate={mutate} isValidating={isValidating} data={data} />
                     </Card>
             </Grid>
         </Card>
