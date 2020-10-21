@@ -20,7 +20,6 @@ export const BidForm = ({id, mutate, isValidating, data}) => {
 
     const updateBid = (event) => {
         setBid(event.target.value);
-        // Post bid here
     };
 
     const placeBid = () => {
