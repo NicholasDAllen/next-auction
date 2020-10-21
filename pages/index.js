@@ -8,7 +8,9 @@ const getItems = async () => {
 }
 
 export default function Home() {
-  const { data, error } = useSWR('api/items', getItems);
+  const { data, error } = useSWR('api/items', getItems,{
+    revalidateOnFocus: false,
+  });
 
   if (error) return <div>failed to load</div>;
   let items = <div>Loading...</div>;
