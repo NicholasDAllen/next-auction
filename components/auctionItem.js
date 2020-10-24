@@ -11,7 +11,7 @@ const getItem = async (url) => {
 }
 
 export const AuctionItem = ({id}) => {
-    const swrKey = `api/item/${id}`;
+    const swrKey = `/api/item/${id}`;
     const { data, error, isValidating, mutate } = useSWR(
         swrKey,
         getItem,

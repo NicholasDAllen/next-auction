@@ -1,6 +1,5 @@
 import Skeleton from 'react-loading-skeleton';
 import useSWR from 'swr';
-import { Box } from '@material-ui/core';
 
 const getUser = async (url) => {
     const result = await fetch(url);
@@ -12,11 +11,12 @@ export const Bidder = ({id, bidIsLoading}) => {
         return <div />
     }
 
-    const { data, error } = useSWR(`api/user/${id}`, getUser,{
+    const { data, error } = useSWR(`/api/user/${id}`, getUser,{
         revalidateOnFocus: false,
     });
 
     const name = data? data.name : <Skeleton />;
     const loadingStyle = bidIsLoading? 'isLoading': '';
-    return <div className={`${loadingStyle}`}>{name}</div>;
+    const userPageLink = `/user/${id}`;
+    return <a href={userPageLink}><div className={`${loadingStyle}`}>{name}</div></a>;
 }

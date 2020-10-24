@@ -9,7 +9,7 @@ const getItems = async () => {
 }
 
 export default function Home() {
-  const { data, error } = useSWR('api/items', getItems,{
+  const { data, error } = useSWR('/api/items', getItems,{
     revalidateOnFocus: false,
   });
 
