@@ -7,7 +7,7 @@ const getUser = async (url) => {
 
 import { AppBar, Typography } from '@material-ui/core';
 export const NavBar = () => {
-    const userName = "Jane Doe";
+    const userName = "A. Person";
     const userPage = '/user/1';
     return (<AppBar position="static">
                 <Typography variant="h6">

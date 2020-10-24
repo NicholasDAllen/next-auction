@@ -2,13 +2,13 @@ import { sleep } from "../../../util/sleep";
 
 const users = {
     1: {
-        'name': "Jane Doe",
+        'name': "A. Person",
     },
     2: {
         "name": "Steve Bidds"
     },
     3: {
-        "name": "Bob Smith"
+        "name": "Jane Smith"
     }
 }
 

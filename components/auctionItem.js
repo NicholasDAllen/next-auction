@@ -10,7 +10,7 @@ const getItem = async (url) => {
     return result.json();
 }
 
-export const AuctionItem = ({id}) => {
+export const AuctionItem = ({ id }) => {
     const swrKey = `/api/item/${id}`;
     const { data, error, isValidating, mutate } = useSWR(
         swrKey,
@@ -21,10 +21,10 @@ export const AuctionItem = ({id}) => {
 
     if (error) return <div className='auction_item'>failed to load</div>
 
-    const price = data? data.currentBid : 'XXX';
-    const name = data? data.name : <Skeleton />;
-    const loadingStyle = isValidating? 'isLoading': '';
-    const bidder = data? <Bidder id={data.bidder} bidIsLoading={isValidating} /> : <Skeleton />
+    const price = data ? data.currentBid : 'XXX';
+    const name = data ? data.name : <Skeleton />;
+    const loadingStyle = isValidating ? 'isLoading' : '';
+    const bidder = data ? <Bidder id={data.bidder} bidIsLoading={isValidating} /> : <Skeleton />
 
     return (
         <Card className='auction_item'>
@@ -32,14 +32,14 @@ export const AuctionItem = ({id}) => {
                 container
                 direction="row"
                 justify="center" alignItems="center">
-                    <Box className={`item_name ${loadingStyle}`}>{name}</Box>
-                    <Box>
-                        <div className={`item_price ${loadingStyle}`}>${price}</div>
-                        {bidder}
-                    </Box>
-                    <Card className='bid_form'>
-                        <BidForm id={id} mutate={mutate} isValidating={isValidating} data={data} bidderId={1} />
-                    </Card>
+                <Box className={`item_name ${loadingStyle}`}>{name}</Box>
+                <Box>
+                    <div className={`item_price ${loadingStyle}`}>${price}</div>
+                    {bidder}
+                </Box>
+                <Card className='bid_form'>
+                    <BidForm id={id} mutate={mutate} isValidating={isValidating} data={data} bidderId={1} />
+                </Card>
             </Grid>
         </Card>
     );
