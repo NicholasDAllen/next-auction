@@ -3,13 +3,13 @@ import { sleep } from "../../../util/sleep";
 const items = {
     1: {
         "name": "Famous Painting", 
-        "currentBid": 10,
-        "bidder": null,
+        "currentBid": 15,
+        "bidder": 2,
     },
     2: {
         "name": "A Sculpture", 
-        "currentBid": 10,
-        "bidder": null,
+        "currentBid": 20,
+        "bidder": 1,
     },
     3: {
         "name": "Book of Photographs", 
@@ -25,6 +25,7 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         if (req.body.bid > item.currentBid) {
             item.currentBid = req.body.bid;
+            item.bidder = req.body.bidder;
         }
     }
     res.statusCode = 200;

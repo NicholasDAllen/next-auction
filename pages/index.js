@@ -1,6 +1,7 @@
-import useSWR from 'swr'
+import useSWR from 'swr';
 import { Grid } from '@material-ui/core';
 import { AuctionItem } from '../components/auctionItem';
+import { NavBar } from '../components/navbar';
 
 const getItems = async () => {
   const result = await fetch('/api/items');
@@ -19,6 +20,7 @@ export default function Home() {
   }
 
   return [
+    <NavBar />,
     <Grid
       container
       direction="column"
