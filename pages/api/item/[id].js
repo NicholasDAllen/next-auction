@@ -1,6 +1,6 @@
 import { sleep } from "../../../util/sleep";
 
-const items = {
+export const items = {
     1: {
         "name": "Famous Painting",
         "currentBid": 15,

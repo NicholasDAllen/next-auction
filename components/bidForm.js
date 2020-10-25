@@ -1,4 +1,4 @@
-import { Button, Input, Box} from '@material-ui/core';
+import { Button, Input, Box } from '@material-ui/core';
 import React, { useState } from 'react';
 
 const postBid = (id, bid, bidderId) => {
@@ -7,7 +7,7 @@ const postBid = (id, bid, bidderId) => {
         bidder: bidderId,
     });
 
-    return fetch(`api/item/${id}`, {
+    return fetch(`/api/item/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -16,7 +16,7 @@ const postBid = (id, bid, bidderId) => {
     });
 }
 
-export const BidForm = ({id, mutate, isValidating, data, bidderId}) => {
+export const BidForm = ({ id, mutate, isValidating, data, bidderId }) => {
     const [bid, setBid] = useState('');
 
     const updateBid = (event) => {
